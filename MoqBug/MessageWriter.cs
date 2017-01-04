@@ -1,19 +1,16 @@
 ﻿using System;
 
+using AmbientContext.DateTimeService;
+
 namespace MoqBug
 {
     public class MessageWriter
     {
-        private readonly IDateTimeProvider _dateTimeProvider;
-
-        public MessageWriter(IDateTimeProvider dateTimeProvider)
-        {
-            _dateTimeProvider = dateTimeProvider;
-        }
+        public readonly AmbientDateTimeService DateTimeProvider = new AmbientDateTimeService();
 
         public void Write(string message)
         {
-            Console.WriteLine($"{_dateTimeProvider.Now.ToShortTimeString()} : {message}");
+            Console.WriteLine($"{DateTimeProvider.Now.ToShortTimeString()} : {message}");
         }
     }
 }
